@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras - Porteira Preta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>🌾 Porteira Preta</h1>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn btn-icon" title="Alternar tema">
+                        🌙
+                    </button>
+                    <button id="logoutBtn" class="btn btn-secondary">
+                        Sair
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html">Painel</a></li>
+                <li><a href="calculadoras.html" class="active">Calculadoras</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <h2>🧮 Calculadoras de Gestão</h2>
+            <p class="subtitle">Ferramentas para auxiliar no gerenciamento da fazenda</p>
+
+            <!-- Calculadora 1: Consumo de Ração -->
+            <div id="consumo" class="calculator-section">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>🌾 Consumo de Ração</h3>
+                        <p>Calcule o consumo diário e semanal de ração</p>
+                    </div>
+                    
+                    <form id="formConsumo" class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="numAnimais">Número de Animais</label>
+                                <input type="number" id="numAnimais" min="1" step="1" required placeholder="Ex: 100">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="consumoMedio">Consumo Médio (kg/dia/animal)</label>
+                                <input type="number" id="consumoMedio" min="0" step="0.1" required placeholder="Ex: 2.5">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Calcular</button>
+                            <button type="button" class="btn btn-secondary" onclick="limparConsumo()">Limpar</button>
+                        </div>
+                    </form>
+
+                    <div id="resultConsumo" class="calculator-result" style="display: none;">
+                        <h4>Resultados:</h4>
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <span class="result-label">Consumo Diário:</span>
+                                <span class="result-value" id="consumoDiario">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Consumo Semanal:</span>
+                                <span class="result-value" id="consumoSemanal">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Consumo Mensal (30 dias):</span>
+                                <span class="result-value" id="consumoMensal">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculadora 2: Custo por Animal -->
+            <div id="custo" class="calculator-section">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>💵 Custo por Animal</h3>
+                        <p>Calcule os custos totais e por cabeça de gado</p>
+                    </div>
+                    
+                    <form id="formCusto" class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="custoRacao">Custo com Ração (R$)</label>
+                                <input type="number" id="custoRacao" min="0" step="0.01" required placeholder="Ex: 5000.00">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="custoMedicamentos">Medicamentos (R$)</label>
+                                <input type="number" id="custoMedicamentos" min="0" step="0.01" required placeholder="Ex: 1200.00">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="custoEnergia">Energia (R$)</label>
+                                <input type="number" id="custoEnergia" min="0" step="0.01" required placeholder="Ex: 800.00">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="custoMaoObra">Mão de Obra (R$)</label>
+                                <input type="number" id="custoMaoObra" min="0" step="0.01" required placeholder="Ex: 3000.00">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numAnimaisCusto">Número de Animais</label>
+                            <input type="number" id="numAnimaisCusto" min="1" step="1" required placeholder="Ex: 100">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Calcular</button>
+                            <button type="button" class="btn btn-secondary" onclick="limparCusto()">Limpar</button>
+                        </div>
+                    </form>
+
+                    <div id="resultCusto" class="calculator-result" style="display: none;">
+                        <h4>Resultados:</h4>
+                        <div class="result-grid">
+                            <div class="result-item result-highlight">
+                                <span class="result-label">Custo Total:</span>
+                                <span class="result-value" id="custoTotal">-</span>
+                            </div>
+                            <div class="result-item result-highlight">
+                                <span class="result-label">Custo por Animal:</span>
+                                <span class="result-value" id="custoPorAnimal">-</span>
+                            </div>
+                        </div>
+                        <div class="result-breakdown">
+                            <h5>Detalhamento:</h5>
+                            <ul id="custoDetalhes"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculadora 3: Lucro por Lote -->
+            <div id="lucro" class="calculator-section">
+                <div class="calculator-card">
+                    <div class="calculator-header">
+                        <h3>📈 Lucro por Lote</h3>
+                        <p>Calcule a rentabilidade do seu lote de animais</p>
+                    </div>
+                    
+                    <form id="formLucro" class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="receitaTotal">Receita Total (R$)</label>
+                                <input type="number" id="receitaTotal" min="0" step="0.01" required placeholder="Ex: 50000.00">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="custosTotal">Custos Totais (R$)</label>
+                                <input type="number" id="custosTotal" min="0" step="0.01" required placeholder="Ex: 35000.00">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Calcular</button>
+                            <button type="button" class="btn btn-secondary" onclick="limparLucro()">Limpar</button>
+                        </div>
+                    </form>
+
+                    <div id="resultLucro" class="calculator-result" style="display: none;">
+                        <h4>Resultados:</h4>
+                        <div class="result-grid">
+                            <div class="result-item result-highlight">
+                                <span class="result-label">Lucro Líquido:</span>
+                                <span class="result-value" id="lucroLiquido">-</span>
+                            </div>
+                            <div class="result-item result-highlight">
+                                <span class="result-label">Margem de Lucro:</span>
+                                <span class="result-value" id="margemLucro">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Status:</span>
+                                <span class="result-value" id="statusLucro">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Porteira Preta - Sistema de Gerenciamento de Fazenda</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Proteger página
+        requireAuth();
+
+        // Calculadora 1: Consumo de Ração
+        document.getElementById('formConsumo').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const numAnimais = parseFloat(document.getElementById('numAnimais').value);
+            const consumoMedio = parseFloat(document.getElementById('consumoMedio').value);
+            
+            const consumoDiario = numAnimais * consumoMedio;
+            const consumoSemanal = consumoDiario * 7;
+            const consumoMensal = consumoDiario * 30;
+            
+            document.getElementById('consumoDiario').textContent = `${consumoDiario.toFixed(2)} kg`;
+            document.getElementById('consumoSemanal').textContent = `${consumoSemanal.toFixed(2)} kg`;
+            document.getElementById('consumoMensal').textContent = `${consumoMensal.toFixed(2)} kg`;
+            document.getElementById('resultConsumo').style.display = 'block';
+            
+            // Salvar no histórico
+            salvarHistorico('consumo', { numAnimais, consumoMedio, consumoDiario, consumoSemanal, consumoMensal });
+        });
+
+        // Calculadora 2: Custo por Animal
+        document.getElementById('formCusto').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const racao = parseFloat(document.getElementById('custoRacao').value);
+            const medicamentos = parseFloat(document.getElementById('custoMedicamentos').value);
+            const energia = parseFloat(document.getElementById('custoEnergia').value);
+            const maoObra = parseFloat(document.getElementById('custoMaoObra').value);
+            const numAnimais = parseFloat(document.getElementById('numAnimaisCusto').value);
+            
+            const total = racao + medicamentos + energia + maoObra;
+            const porAnimal = total / numAnimais;
+            
+            document.getElementById('custoTotal').textContent = `R$ ${total.toFixed(2)}`;
+            document.getElementById('custoPorAnimal').textContent = `R$ ${porAnimal.toFixed(2)}`;
+            
+            // Detalhamento
+            const detalhes = `
+                <li>Ração: R$ ${racao.toFixed(2)} (${((racao/total)*100).toFixed(1)}%)</li>
+                <li>Medicamentos: R$ ${medicamentos.toFixed(2)} (${((medicamentos/total)*100).toFixed(1)}%)</li>
+                <li>Energia: R$ ${energia.toFixed(2)} (${((energia/total)*100).toFixed(1)}%)</li>
+                <li>Mão de Obra: R$ ${maoObra.toFixed(2)} (${((maoObra/total)*100).toFixed(1)}%)</li>
+            `;
+            document.getElementById('custoDetalhes').innerHTML = detalhes;
+            document.getElementById('resultCusto').style.display = 'block';
+            
+            // Salvar no histórico
+            salvarHistorico('custo', { racao, medicamentos, energia, maoObra, numAnimais, total, porAnimal });
+        });
+
+        // Calculadora 3: Lucro por Lote
+        document.getElementById('formLucro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const receita = parseFloat(document.getElementById('receitaTotal').value);
+            const custos = parseFloat(document.getElementById('custosTotal').value);
+            
+            const lucro = receita - custos;
+            const margem = (lucro / receita) * 100;
+            
+            let status = '';
+            let statusClass = '';
+            
+            if (margem >= 25) {
+                status = '🎯 Excelente! Acima da meta';
+                statusClass = 'success';
+            } else if (margem >= 15) {
+                status = '✅ Bom! Dentro do esperado';
+                statusClass = 'warning';
+            } else if (margem > 0) {
+                status = '⚠️ Atenção! Abaixo do ideal';
+                statusClass = 'warning';
+            } else {
+                status = '❌ Prejuízo! Revise custos';
+                statusClass = 'danger';
+            }
+            
+            document.getElementById('lucroLiquido').textContent = `R$ ${lucro.toFixed(2)}`;
+            document.getElementById('margemLucro').textContent = `${margem.toFixed(2)}%`;
+            document.getElementById('statusLucro').textContent = status;
+            document.getElementById('statusLucro').className = `result-value ${statusClass}`;
+            document.getElementById('resultLucro').style.display = 'block';
+            
+            // Salvar no histórico
+            salvarHistorico('lucro', { receita, custos, lucro, margem, status });
+        });
+
+        // Funções de limpar
+        function limparConsumo() {
+            document.getElementById('formConsumo').reset();
+            document.getElementById('resultConsumo').style.display = 'none';
+        }
+
+        function limparCusto() {
+            document.getElementById('formCusto').reset();
+            document.getElementById('resultCusto').style.display = 'none';
+        }
+
+        function limparLucro() {
+            document.getElementById('formLucro').reset();
+            document.getElementById('resultLucro').style.display = 'none';
+        }
+
+        // Salvar histórico no localStorage
+        function salvarHistorico(tipo, dados) {
+            const historico = JSON.parse(localStorage.getItem('historicoCalculadoras') || '{}');
+            if (!historico[tipo]) {
+                historico[tipo] = [];
+            }
+            historico[tipo].push({
+                data: new Date().toISOString(),
+                ...dados
+            });
+            // Manter apenas últimos 10
+            if (historico[tipo].length > 10) {
+                historico[tipo] = historico[tipo].slice(-10);
+            }
+            localStorage.setItem('historicoCalculadoras', JSON.stringify(historico));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Porteira Preta</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>🌾 Porteira Preta</h1>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn btn-icon" title="Alternar tema">
+                        🌙
+                    </button>
+                    <button id="logoutBtn" class="btn btn-secondary">
+                        Sair
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="index.html">Painel</a></li>
+                <li><a href="calculadoras.html">Calculadoras</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html" class="active">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="contato-wrapper">
+                <div class="contato-info">
+                    <h2>📞 Entre em Contato</h2>
+                    <p>
+                        Tem dúvidas, sugestões ou precisa de ajuda? Preencha o formulário 
+                        ao lado e entraremos em contato o mais breve possível.
+                    </p>
+
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>contato@porteirapreta.com.br</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p>(00) 0000-0000</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">🕐</span>
+                            <div>
+                                <h4>Horário de Atendimento</h4>
+                                <p>Segunda a Sexta: 8h às 18h</p>
+                                <p>Sábado: 8h às 12h</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4>Localização</h4>
+                                <p>Zona Rural - Interior do Brasil</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <h4>Redes Sociais</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" title="Facebook">📘</a>
+                            <a href="#" class="social-icon" title="Instagram">📷</a>
+                            <a href="#" class="social-icon" title="WhatsApp">💬</a>
+                            <a href="#" class="social-icon" title="YouTube">🎥</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contato-form-wrapper">
+                    <form id="contatoForm" class="contato-form">
+                        <h3>Envie sua Mensagem</h3>
+
+                        <div class="form-group">
+                            <label for="nome">Nome Completo *</label>
+                            <input 
+                                type="text" 
+                                id="nome" 
+                                name="nome" 
+                                required 
+                                placeholder="Digite seu nome"
+                                minlength="3"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                required 
+                                placeholder="seu@email.com"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input 
+                                type="tel" 
+                                id="telefone" 
+                                name="telefone" 
+                                placeholder="(00) 00000-0000"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assunto">Assunto *</label>
+                            <select id="assunto" name="assunto" required>
+                                <option value="">Selecione um assunto</option>
+                                <option value="duvida">Dúvida sobre o sistema</option>
+                                <option value="sugestao">Sugestão de melhoria</option>
+                                <option value="suporte">Suporte técnico</option>
+                                <option value="parceria">Parceria/Negócios</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem *</label>
+                            <textarea 
+                                id="mensagem" 
+                                name="mensagem" 
+                                rows="6" 
+                                required 
+                                placeholder="Escreva sua mensagem aqui..."
+                                minlength="10"
+                            ></textarea>
+                        </div>
+
+                        <div class="form-info">
+                            <small>* Campos obrigatórios</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+
+                    <div id="sucessoMensagem" class="sucesso-mensagem" style="display: none;">
+                        <div class="sucesso-icon">✅</div>
+                        <h3>Mensagem Enviada!</h3>
+                        <p>
+                            Obrigado pelo contato, <strong id="nomeUsuario"></strong>!<br>
+                            Recebemos sua mensagem e retornaremos em breve.
+                        </p>
+                        <button class="btn btn-primary" onclick="resetarFormulario()">
+                            Enviar Nova Mensagem
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Porteira Preta - Sistema de Gerenciamento de Fazenda</p>
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        // Formulário de contato
+        document.getElementById('contatoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validar campos
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const assunto = document.getElementById('assunto').value;
+            const mensagem = document.getElementById('mensagem').value.trim();
+
+            // Validações básicas
+            if (nome.length < 3) {
+                alert('Por favor, digite seu nome completo (mínimo 3 caracteres)');
+                return;
+            }
+
+            if (!validarEmail(email)) {
+                alert('Por favor, digite um email válido');
+                return;
+            }
+
+            if (!assunto) {
+                alert('Por favor, selecione um assunto');
+                return;
+            }
+
+            if (mensagem.length < 10) {
+                alert('Por favor, escreva uma mensagem com pelo menos 10 caracteres');
+                return;
+            }
+
+            // Simular envio (em produção, enviar para servidor)
+            console.log('Formulário enviado:', {
+                nome,
+                email,
+                telefone: document.getElementById('telefone').value,
+                assunto,
+                mensagem,
+                data: new Date().toISOString()
+            });
+
+            // Mostrar mensagem de sucesso
+            document.getElementById('nomeUsuario').textContent = nome.split(' ')[0];
+            document.getElementById('contatoForm').style.display = 'none';
+            document.getElementById('sucessoMensagem').style.display = 'block';
+
+            // Salvar no localStorage (opcional - histórico de contatos)
+            salvarContato({ nome, email, assunto, mensagem });
+        });
+
+        function validarEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function resetarFormulario() {
+            document.getElementById('contatoForm').reset();
+            document.getElementById('contatoForm').style.display = 'block';
+            document.getElementById('sucessoMensagem').style.display = 'none';
+        }
+
+        function salvarContato(dados) {
+            const contatos = JSON.parse(localStorage.getItem('contatosEnviados') || '[]');
+            contatos.push({
+                ...dados,
+                data: new Date().toISOString()
+            });
+            localStorage.setItem('contatosEnviados', JSON.stringify(contatos));
+        }
+
+        // Máscara para telefone
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 10) {
+                e.target.value = `(${value.slice(0,2)}) ${value.slice(2,7)}-${value.slice(7)}`;
+            } else if (value.length > 6) {
+                e.target.value = `(${value.slice(0,2)}) ${value.slice(2,6)}-${value.slice(6)}`;
+            } else if (value.length > 2) {
+                e.target.value = `(${value.slice(0,2)}) ${value.slice(2)}`;
+            } else if (value.length > 0) {
+                e.target.value = `(${value}`;
+            }
+        });
+    </script>
+</body>
+</html>
